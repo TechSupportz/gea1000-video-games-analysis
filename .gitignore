@@ -2,3 +2,7 @@
 output/
 .ipynb_checkpoints/
 .DS_Store
+part_c/figures/
+part_c/tables/
+part_c/multiplayer_story_manifest.json
+__pycache__/
