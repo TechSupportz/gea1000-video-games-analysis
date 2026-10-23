@@ -7,12 +7,14 @@ from matplotlib.colors import LinearSegmentedColormap
 from matplotlib.ticker import PercentFormatter
 
 SURFACE, INK, MUTED, GRID = "#fcfcfb", "#1f2328", "#6b7280", "#e7e7e3"
-# player 1 vs player 2 - checked with the dataviz palette validator (CVD safe)
-SP, MP = "#1fb5a0", "#5b4ae6"
-HOME, HANDHELD = "#2d7dd2", "#f4845f"
-JAPAN_RED, JAPAN_BLUSH = "#bc002d", "#f6d4da"
-TIER_RAMP = ["#e4e1fb", "#bcb5f4", "#8e83eb", "#5b4ae6", "#2f2490"]
-RR_CMAP = LinearSegmentedColormap.from_list("rr", ["#2a7fbf", "#f2f2f0", "#d1495b"])
+# matched to the slide deck: navy bg #1c4587, gold accent #ffd966
+# multiplayer = deck navy, single-player = quiet slate, same on every chart (Japan too)
+SP, MP = "#8c96a8", "#1c4587"
+HOME, HANDHELD = "#2a9d8f", "#e09f3e"
+# Japan callout = gold band like the deck accent, dark amber label so it still reads on white
+SPOTLIGHT, SPOTLIGHT_BAND = "#9a6700", "#ffd966"
+TIER_RAMP = ["#dbe3f1", "#a9bbdb", "#6f8cc0", "#1c4587", "#0f2a57"]
+RR_CMAP = LinearSegmentedColormap.from_list("rr", ["#1c4587", "#f2f2f0", "#e09f3e"])
 
 
 def use_style():
@@ -64,8 +66,8 @@ def paired_bars(ax, groups, colors, names, edges=None, top=100, legend="upper ri
 
 
 def japan_spotlight(ax, x):
-    # faint red band + red tick label so Japan stands out before the Japan slide (call after paired_bars)
-    ax.axvspan(x - .48, x + .48, color=JAPAN_RED, alpha=.06, lw=0, zorder=0)
+    # faint gold band + amber tick label so Japan stands out before the Japan slide (call after paired_bars)
+    ax.axvspan(x - .48, x + .48, color=SPOTLIGHT_BAND, alpha=.22, lw=0, zorder=0)
     label = ax.get_xticklabels()[x]
-    label.set_color(JAPAN_RED)
+    label.set_color(SPOTLIGHT)
     label.set_fontweight("bold")
